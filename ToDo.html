@@ -1,21 +1,110 @@
 <html>
-<div id="myDIV" class="header">
-        <h2>My To Do List</h2>
+
+<script>
+
+  function addnewElement()
+  {
+    var removebutton=document.createElement("button");
+    var donebutton=document.createElement("button");
+    var editbutton=document.createElement("button");
+    removebutton.innerHTML="Remove";
+    donebutton.innerHTML="Done";
+    editbutton.innerHTML="Edit";
+    
+    donebutton.style.marginLeft="900";
+    removebutton.style.marginLeft="950";
+    editbutton.style.marginLeft="1000";
+    removebutton.style.color="red";
+    donebutton.style.color="#006400";
+    donebutton.setAttribute("onclick","taskdone(this)");
+    removebutton.setAttribute("onclick","removetask(this)");
+    editbutton.setAttribute("onclick","editask(this)");
+    var newlist=document.createElement("li");
+    var newtodotask=document.getElementById("myInput").value;
+    var text=document.createTextNode(newtodotask);
+    newlist.appendChild(text);
+    newlist.appendChild(donebutton);
+    newlist.appendChild(removebutton);
+    newlist.appendChild(editbutton);
+
+    //newlist.setAttribute("onclick", "checkUncheck(this)");
+   
+    if(newtodotask==='')
+    {
+      alert("Invalid input.Try again.");
+    }
+    else
+    {
+      document.getElementById("myUL").appendChild(newlist);
+      alert("Task added successfully");
+      document.getElementById("myInput").value="";
+      
+    }
+  }
+  function taskdone(element)
+  {
+    //console.log(element.parentNode);
+    if(element.parentNode.className=="checked")
+    {
+    element.parentNode.removeAttribute("class");
+    element.innerHTML="Done";
+    element.style.color="#006400";
+    }
+    else
+    {
+    element.parentNode.className = "checked";
+    element.innerHTML="Undo";
+    element.style.color="black";
+  }}
+  function removetask(element)
+  {
+    //console.log(element.parentNode);
+    element.parentNode.remove();
+  }
+
+
+  function checkUncheck(element)
+  {    
+    if(element.className=="checked")
+    element.removeAttribute("class");
+    else
+    element.className="checked";
+    
+  }
+
+  
+  function editask(element)
+  {
+   var newtext=prompt("Please update ypur task");
+   //var newtask=document.createTextNode(newtext);
+   console.log(element.parentNode.nodeName);
+   element.parentNode.innerText=newtext;
+      
+  }
+
+</script>
+
+<div id="myDIV" class="header" style="background:rgb(20, 85, 128)">
+        <h2>My To Do List </h2>
         <input type="text" id="myInput" placeholder="Title...">
-        <span onclick="newElement()" class="addBtn">Add</span>
+        <span onclick="addnewElement()" class="addBtn">Add</span>
       </div>
       
       <ul id="myUL">
-        <li>Hit the gym</li>
+        <!--<li>Hit the gym </li>
         <li class="checked">Finish Assignment</li>
         <li>Pay Bills</li>
         <li>Buy eggs</li>
         <li>Read a book</li>
-        <li>Organize office</li>
+        <li>Organize office</li>-->
       </ul>
       <style>
       * {
   box-sizing: border-box;
+}
+#myInput{
+  width: 40%;
+  margin-left: 25%;
 }
 
 /* Remove margins and padding from the list */
@@ -113,7 +202,7 @@ input {
 /* Style the "Add" button */
 .addBtn {
   padding: 10px;
-  width: 25%;
+  width: 15%;
   background: #d9d9d9;
   color: #555;
   float: left;

@@ -1,5 +1,29 @@
 <!DOCTYPE html>
 <html>
+
+<script>
+ function authenticate()
+  {
+    event.preventDefault();
+   // var logi=document.getElementById("login");
+   console.log("In authenticate")
+var username=document.getElementById("user").value;
+var password=document.getElementById("pswd").value;
+console.log(username);
+console.log(password);
+if(username=="abhay"&&password=="12345")
+{
+  window.location = "ToDo.html";
+}
+else
+{
+  alert("Enter correct username and password");
+  document.getElementById("user").value="";
+  document.getElementById("pswd").value="";
+}
+  }
+</script>
+
  <body background= "login.jpg" height="50"></body>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -35,10 +59,10 @@ button:hover {
 }
 
 .cancelbtn {
-  width: 7%;
+  width: 15%;
   padding: 10px 18px;
   background-color: #7e1212;
-  border-radius: 40%;
+ 
 }
 
 .imgcontainer {
@@ -53,8 +77,10 @@ img.avatar {
 
 .container {
   padding: 10px;
-}
+  width: 500px;
+  margin-left: 30%;
 
+}
 
 span.psw {
   float: right;
@@ -77,29 +103,29 @@ span.psw {
 
 <h2>Login Form </h2>
 
-<form action="/action_page.php">
+<form action="">
   <div class="imgcontainer">
     <img src="user.png" alt="Avatar" class="avatar">
   </div>
 
   <div class="container">
-    <label id="user" for="uname"><b>Username </b></label>
-    <input type="text" placeholder="Enter your Username" name="uname" required>
+    <label style="color: white"  for="uname"><b>Username </b></label>
+    <input type="text" id="user" placeholder="Enter your Username" name="uname" required>
 
-    <label id="pswd" for="psw"><b>Password</b></label>
-    <input type="password" placeholder="Enter your Password" name="psw" required>
+    <label style="color: white"  for="psw"><b>Password</b></label>
+    <input type="password" id="pswd" placeholder="Enter your Password" minlength="5" name="psw" required>
         
-    <button type="submit">Login</button>
-    <label>
-      <input type="checkbox" checked="checked" name="remember"> Remember me
+    <button type="submit" id="login" onclick="authenticate()">Login </button>
+    <label style="color: white">
+      <input type="checkbox" checked="checked" name="remember"> Remember me 
     </label>
   </div>
 
-  <div class="container" style="background-color:#f1f1f1">
-    <button type="button" class="cancelbtn">Cancel</button>
+  <div class="container" style="background-color:rgb(220, 245, 247); height: 40px">
+    <button  type="button" class="cancelbtn">Cancel</button>
     <span class="psw">Forgot <a href="#">password?</a></span>
   </div>
 </form>
-
+</div>
 </body>
 </html>
